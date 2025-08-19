@@ -30,20 +30,20 @@ enum {
 	_MOUSELinuxPlate,
 	_MOUSEphonePlate
 };*/
-#define	_japWinQWERTY 1
-#define	_winQWERTY 2
-#define	_macQWERTY 3
-#define	_LinuxQWERTY 4
-#define	_phoneQWERTY 5
-#define	_baseMOVEPlate 6
-#define	_japMOVEPlate 7
-#define	_LOWER 8
-#define	_RAISE 9
-#define	_FUNBluetooth_etc 10
-#define	_MOUSEWinPlate 11
-#define	_MOUSEmacPlate 12
-#define	_MOUSELinuxPlate 13
-#define	_MOUSEphonePlate 14
+#define	_japWinQWERTY 0
+#define	_winQWERTY 1
+#define	_macQWERTY 2
+#define	_LinuxQWERTY 3
+#define	_phoneQWERTY 4
+#define	_baseMOVEPlate 5
+#define	_japMOVEPlate 6
+#define	_LOWER 7
+#define	_RAISE 8
+#define	_FUNBluetooth_etc 9
+#define	_MOUSEWinPlate 10
+#define	_MOUSEmacPlate 11
+#define	_MOUSELinuxPlate 12
+#define	_MOUSEphonePlate 13
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
 &lt { quick_tap_ms = <200>; };
@@ -87,7 +87,7 @@ enum {
    &mt LGUI TAB   &kp Q   &kp W   &kp E   &kp R   &kp T		&kp Y   &kp U   &kp I   &kp O   &kp P   &kp MINUS
    &mt LCTRL ENTER   &kp A   &kp S   &kp D   &kp F   &kp G		&kp H   &kp J   &kp K   &kp L   &kp SEMI   &kp SQT
    &kp LSHFT   &kp Z   &kp X   &kp C   &kp V   &kp B		&kp N   &kp M   &kp COMMA   &kp PERIOD   &kp SLASH   &kp RSHFT
-   &kp HYPER   &lt _MOUSEWinPlate BKSP   &kp LANG5   &mt LALT DEL   &lt _japMOVEPlate ESC   &mt LCTRL SPACE		&lt _japMOVEPlate SPACE   &kp SLASH   &kp EQUAL   &kp GRAVE   &kp ENTER
+   &kp HYPER   &lt _MOUSEWinPlate BKSP   &kp LANG1   &mt LALT DEL   &lt _japMOVEPlate ESC   &mt LCTRL SPACE		&lt _japMOVEPlate SPACE   &kp SLASH   &kp EQUAL   &kp GRAVE   &kp ENTER
 
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
