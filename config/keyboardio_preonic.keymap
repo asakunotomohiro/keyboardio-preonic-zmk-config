@@ -12,6 +12,22 @@
 #define LOWER 1
 #define RAISE 2
 #define FN 3
+enum {
+	_japWinQWERTY,
+	_winQWERTY,
+	_macQWERTY,
+	_LinuxQWERTY,
+	_phoneQWERTY,
+	_baseMOVEPlate,
+	_japMOVEPlate,
+	_LOWER,
+	_RAISE,
+	_FUN,
+	_MOUSEWinPlate,
+	_MOUSEmacPlate,
+	_MOUSELinuxPlate,
+	_MOUSEphonePlate,
+};
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
 &lt { quick_tap_ms = <200>; };
@@ -32,63 +48,106 @@
         compatible = "zmk,keymap";
 
         base_layer {
-            label = "Base";
+            label = "_japWinQWERTY";
             bindings = <
-                                                                                                             &kp C_PP    &mo FN      &kp C_MUTE
-
- &kp GRAVE   &kp N1      &kp N2      &kp N3      &kp N4      &kp N5      &kp N6      &kp N7      &kp N8      &kp N9      &kp N0      &kp MINUS
- &kp TAB     &kp Q       &kp W       &kp E       &kp R       &kp T       &kp Y       &kp U       &kp I       &kp O       &kp P       &kp BKSP
- &kp ESC     &kp A       &kp S       &kp D       &kp F       &kp G       &kp H       &kp J       &kp K       &kp L       &kp SEMI    &kp SQT
- &kp LSHFT   &kp Z       &kp X       &kp C       &kp V       &kp B       &kp N       &kp M       &kp COMMA   &kp PERIOD  &kp SLASH   &kp ENTER
- &kp HYPER   &kp LCTRL   &kp LALT    &kp LGUI    &mo LOWER         &kp SPACE         &mo RAISE   &kp LEFT    &kp DOWN    &kp UP      &kp RIGHT
+   &kp C_PP    &mo FN      &kp C_MUTE
+   
+   &kp DEL   &kp N1   &kp N2   &kp N3   &kp N4   &kp N5		&kp N6   &kp N7   &kp N8   &kp N9   &kp N0   &kp BKSP
+   &mt LGUI TAB   &kp Q   &kp W   &kp E   &kp R   &kp T		&kp Y   &kp U   &kp I   &kp O   &kp P   &kp MINUS
+   &mt LCTRL ENTE   &kp A   &kp S   &kp D   &kp F   &kp G		&kp H   &kp J   &kp K   &kp L   &kp SEMI   &kp SQT
+   &kp LSHFT   &kp Z   &kp X   &kp C   &kp V   &kp B		&kp N   &kp M   &kp COMMA   &kp PERIOD   &kp SLASH   &kp RSHFT
+   &kp K_APP   &lt _MOUSEWinPlate BKSP   &kp LANG5   &mt LALT DEL   &mt _japMOVEPlate ESC   &mt LCTRL SPACE		&mt LCTRL SPACE   &kp SLASH   &kp EQUAL   &kp GRAVE   &kp ENTE
 
             >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;            
+            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
         lower_layer {
-            label = "Lower";
-            bindings = <
-                                                                                                               &trans          &trans       &trans
+            label = "_winQWERTY";
+//            bindings = <
 
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans      &kp KP_DIVIDE &kp KP_MULTIPLY &kp KP_MINUS &kp KP_EQUAL
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &kp KP_N7   &kp KP_N8     &kp KP_N9       &kp KP_MINUS &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &kp KP_N4   &kp KP_N5     &kp KP_N6       &kp KP_PLUS  &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &kp KP_N1   &kp KP_N2     &kp KP_N3       &kp KP_PLUS  &trans
- &trans      &trans      &trans      &trans      &trans            &kp BKSP          &kp KP_N0   &kp KP_DOT    &trans          &kp KP_ENTER &trans
+   &trans  &trans    &trans
+   
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans      &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans      &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans      &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans      &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&lt _baseMOVEPlate SPACE   &trans   &trans   &trans   &trans   &trans
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+//            >;
+//            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        raise_layer {
-            label = "Raise";
-            bindings = <
-                                                                                                               &trans     &trans     &trans
+//        raise_layer {
+//            label = "_macQWERTY";
+//            bindings = <
+//
+//   &trans  &trans    &trans
+//   
+//   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans      &trans   &trans   &trans   &trans
+//   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans      &trans   &trans   &trans   &trans
+//   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans      &trans   &trans   &trans   &trans
+//   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans      &trans   &trans   &trans   &trans
+//   &trans   &trans   &trans   &trans   &trans   &trans		&lt _baseMOVEPlate SPACE   &trans   &trans   &trans   &trans   &trans
+//
+//            >;
+//            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+//        };
 
- &kp ESC     &kp F1      &kp F2      &kp F3      &kp F4      &kp F5      &kp F6      &kp F7       &kp F8       &kp F9     &kp F10    &kp BKSP
- &trans      &trans      &trans      &trans      &trans      &trans      &kp BSLH    &kp LS(LBKT) &kp LS(RBKT) &kp LBKT   &kp RBKT   &kp DEL
- &kp CAPS    &trans      &trans      &trans      &trans      &trans      &kp LEFT    &kp DOWN     &kp UP       &kp RIGHT  &trans     &trans
- &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans       &trans       &trans     &trans     &trans
- &trans      &trans      &kp RALT    &trans      &trans            &trans            &trans       &trans       &trans     &trans     &trans
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Move Layer
+ * ,------------------------------------------------------------------------------------------------------------------------.
+ * |         |   F1    |   F2    |   F3    |   F4    |   F5    ||   F6    |   F7    |   F8    |   F9    |   F10   |         |
+ * |------------------------------------------------------------------------------------------------------------------------.
+ * |         |    !    |    @    |    #    |    $    |    %    ||    ^    |    &    |    *    |    (    |    )    |    _    |
+ * |---------+---------+---------+---------+---------+---------++---------+---------+---------+---------+---------+---------|
+ * |         |   Home  |   End   |   Esc   |    =    |   Tab   ||    ←   |    ↓   |    ↑   |    →   |    :    |    "    |
+ * |---------+---------+---------+---------+---------+---------++---------+---------+---------+---------+---------+---------|
+ * | LShift  |    1    |    2    |    3    |    4    |    5    ||    6    |    7    |    8    |    9    |    0    | RShift  |
+ * |---------+---------+---------+---------+---------+---------++---------+---------+---------+---------+---------+---------|
+ * | Hyper   |         |         | 配列済み| 配列済み|         || 配列済み|    |    |    +    |         |    ~    |BackSpace|
+ * `------------------------------------------------------------------------------------------------------------------------'
+ */
 
         func_layer {
-            label = "Function";
-            bindings = <
-                                                                                                             &trans      &trans      &trans
+            label = "_baseMOVEPlate";
+//            bindings = <
 
- &out OUT_TOG &bt BT(0)   &bt BT(1)   &bt BT(2)   &bt BT(3)   &bt BT(4)   &trans      &trans      &trans     &trans      &trans      &trans
- &trans       &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans     &trans      &trans      &trans
- &trans       &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans     &trans      &trans      &trans
- &trans       &trans      &trans      &trans      &trans      &trans      &trans      &trans      &trans     &trans      &trans      &trans
- &bootloader  &trans      &trans      &trans      &studio_unlock    &trans            &trans      &trans     &trans      &trans      &bt BT_CLR
+   &trans  &trans    &trans
+   
+   &trans   &kp F1   &kp F2   &kp F3   &kp F4   &kp F5		&kp F6   &kp F7   &kp F8   &kp F9   &kp F10   &trans
+   &trans   &kp EXCL   &kp AT   &kp HASH   &DOLLAR   &kp PERCENT		&kp CARET   &kp AMPERSAND   &kp ASTERISK   &kp LPAR   &kp RPAR   &kp UNDER
+   &trans   &kp HOME   &kp END   &kp ESC   &kp KP_EQUAL   &kp TAB		&kp LEFT   &kp DOWN   &kp UP   &kp RIGHT   &kp COLON   &kp DQT
+   &kp LSHIFT   &kp KP_N1   &kp KP_N2   &kp KP_N3   &kp KP_N4   &kp KP_N5		&kp KP_N6   &kp KP_N7   &kp KP_N8   &kp KP_N9   &KP_N0   &kp RSHIFT
+   &kp HYPER   &trans   &trans   &trans   &trans   &trans		&trans   &kp PIPE   &kp KP_PLUS   &trans   &kp TILDE   &kp BSPC
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+//            >;
+//            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
     };
 };
