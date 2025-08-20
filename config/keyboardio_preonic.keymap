@@ -39,11 +39,12 @@ enum {
 #define	_japMOVEPlate 6
 #define	_LOWER 7
 #define	_RAISE 8
-#define	_FUNBluetooth_etc 9
-#define	_MOUSEWinPlate 10
-#define	_MOUSEmacPlate 11
-#define	_MOUSELinuxPlate 12
-#define	_MOUSEphonePlate 13
+#define	_Bluetooth_etc 9
+#define	_functionKey 10
+#define	_MOUSEWinPlate 11
+#define	_MOUSEmacPlate 12
+#define	_MOUSELinuxPlate 13
+#define	_MOUSEphonePlate 14
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
 &lt { quick_tap_ms = <200>; };
@@ -55,13 +56,13 @@ enum {
 #define HYPER LC(LS(LA(LGUI)))
 
 / {
-    chosen {
-        // Valid choices: [ &mit_layout, &ortho_layout ]
-        zmk,physical-layout = &mit_layout;
-    };
+	chosen {
+		// Valid choices: [ &mit_layout, &ortho_layout ]
+		zmk,physical-layout = &mit_layout;
+	};
 
-    keymap {
-        compatible = "zmk,keymap";
+	keymap {
+		compatible = "zmk,keymap";
 
 
 /* WindowsBase Qwerty
@@ -78,24 +79,26 @@ enum {
  * `------------------------------------------------------------------------------------------------------------------------'
  */
 
-        base_jpLayer {
-            label = "_japWinQWERTY";
-            bindings = <
-   &kp C_PP    &mo _FUNBluetooth_etc      &kp C_MUTE
+		base_jpLayer {
+			label = "_japWinQWERTY";
+			bindings = <
+   &kp C_PP    &mo _Bluetooth_etc      &kp C_MUTE
    
    &kp DEL   &kp N1   &kp N2   &kp N3   &kp N4   &kp N5		&kp N6   &kp N7   &kp N8   &kp N9   &kp N0   &kp BKSP
    &mt LGUI TAB   &kp Q   &kp W   &kp E   &kp R   &kp T		&kp Y   &kp U   &kp I   &kp O   &kp P   &kp MINUS
    &mt LCTRL ENTER   &kp A   &kp S   &kp D   &kp F   &kp G		&kp H   &kp J   &kp K   &kp L   &kp SEMI   &kp SQT
    &kp LSHFT   &kp Z   &kp X   &kp C   &kp V   &kp B		&kp N   &kp M   &kp COMMA   &kp PERIOD   &kp SLASH   &kp RSHFT
-   &kp HYPER   &lt _MOUSEWinPlate BKSP   &kp LANG1   &mt LALT DEL   &lt _japMOVEPlate ESC   &mt LCTRL SPACE		&lt _japMOVEPlate SPACE   &kp SLASH   &kp EQUAL   &kp GRAVE   &kp ENTER
+   &kp HYPER   &lt _MOUSEWinPlate BKSP   &kp INT1   &mt LALT DEL   &lt _functionKey ESC   &mt LCTRL SPACE		&lt _japMOVEPlate SPACE   &kp SLASH   &kp EQUAL   &kp GRAVE   &kp ENTER
+		// LANG1	←☆日本語入力。
+		// LANG5	←☆無反応(半角/全角のはずが機能せず)。
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
 
-        base_winLayer {
-            label = "_winQWERTY";
-            bindings = <
+		base_winLayer {
+			label = "_winQWERTY";
+			bindings = <
 
    &trans  &trans    &trans
    
@@ -105,29 +108,13 @@ enum {
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
    &kp K_APP   &trans   &trans   &trans   &trans   &trans		&lt _baseMOVEPlate SPACE   &trans   &trans   &trans   &trans   &trans
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
 
-        base_macLayer {
-            label = "_macQWERTY";
-            bindings = <
-
-   &trans  &trans    &trans
-   
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        base_linuxLayer {
-            label = "_LinuxQWERTY";
-            bindings = <
+		base_macLayer {
+			label = "_macQWERTY";
+			bindings = <
 
    &trans  &trans    &trans
    
@@ -137,13 +124,13 @@ enum {
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
 
-        base_phoneLayer {
-            label = "_phoneQWERTY";
-            bindings = <
+		base_linuxLayer {
+			label = "_LinuxQWERTY";
+			bindings = <
 
    &trans  &trans    &trans
    
@@ -153,9 +140,25 @@ enum {
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
+
+		base_phoneLayer {
+			label = "_phoneQWERTY";
+			bindings = <
+
+   &trans  &trans    &trans
+   
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
 
 
 
@@ -197,9 +200,9 @@ enum {
  * `------------------------------------------------------------------------------------------------------------------------'
  */
 
-        move_baseLayer {
-            label = "_baseMOVEPlate";
-            bindings = <
+		move_baseLayer {
+			label = "_baseMOVEPlate";
+			bindings = <
 
    &trans  &trans    &trans
    
@@ -209,29 +212,13 @@ enum {
    &kp LSHIFT   &kp KP_N1   &kp KP_N2   &kp KP_N3   &kp KP_N4   &kp KP_N5		&kp KP_N6   &kp KP_N7   &kp KP_N8   &kp KP_N9   &kp KP_N0   &kp RSHIFT
    &kp HYPER   &trans   &trans   &trans   &trans   &trans		&trans   &kp PIPE   &kp KP_PLUS   &trans   &kp TILDE   &kp BSPC
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
 
-        move_jpLayer {
-            label = "_japMOVEPlate";
-            bindings = <
-
-   &trans  &trans    &trans
-   
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        lower_layer {
-            label = "_LOWER";
-            bindings = <
+		move_jpLayer {
+			label = "_japMOVEPlate";
+			bindings = <
 
    &trans  &trans    &trans
    
@@ -241,13 +228,13 @@ enum {
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
 
-        raise_layer {
-            label = "_RAISE";
-            bindings = <
+		lower_layer {
+			label = "_LOWER";
+			bindings = <
 
    &trans  &trans    &trans
    
@@ -257,9 +244,25 @@ enum {
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
+
+		raise_layer {
+			label = "_RAISE";
+			bindings = <
+
+   &trans  &trans    &trans
+   
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
 
 
 
@@ -278,7 +281,7 @@ enum {
 
 
 
-/* fun	bluetooth設定など。
+/* Bluetooth設定など。
  * ,------------------------------------------------------------------------------------------------------------------------.
  * |×blueOFF| blueSel1| blueSel2| blueSel3| blueSel4|×bluePair||        |         |         |         |        |×M(M_ver)|
  * |------------------------------------------------------------------------------------------------------------------------.
@@ -293,9 +296,9 @@ enum {
  */
  // https://zmk.dev/docs/keymaps/behaviors/bluetooth
 
-        bluetooth_layer {
-            label = "_FUNBluetooth_etc";
-            bindings = <
+		bluetooth_layer {
+			label = "_Bluetooth_etc";
+			bindings = <
 
    &trans  &trans    &trans
    
@@ -305,9 +308,9 @@ enum {
    &trans   &trans   &kp C_MUTE   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
 
 
 
@@ -316,6 +319,36 @@ enum {
 
 
 
+
+/* FunctionKey設定など。
+ * ,------------------------------------------------------------------------------------------------------------------------.
+ * |         |   F1    |   F2    |   F3    |   F4    |   F5    ||   F6    |   F7    |   F8    |   F9    |   F10   |         |
+ * |------------------------------------------------------------------------------------------------------------------------.
+ * |  GUI    |   F11   |   F12   |   F13   |   F14   |   F15   ||   F16   |   F17   |   F18   |   [     |   ]     |  _      |
+ * |---------+---------+---------+---------+---------+---------++---------+---------+---------+---------+---------+---------|
+ * |         |  HOME   |  END    |  PageUp |  PgDown |BackSpace||   F19   |   F20   |   F21   |   F22   |   F23   |  "      |
+ * |---------+---------+---------+---------+---------+---------++---------+---------+---------+---------+---------+---------|
+ * |         |   F1    |   F2    |   F3    |   F4    |   F5    ||   F6    |   F7    |   F8    |   F9    |   F10   |  RShift |
+ * |---------+---------+---------+---------+---------+---------++---------+---------+---------+---------+---------+---------|
+ * |  Delete | 配置済み|  Enter  |  RAlt   | 配置済み|  Space  || 配置済み|   |     |   +     |         |   ~     |BackSpace|
+ * `------------------------------------------------------------------------------------------------------------------------'
+ */
+
+		functionKey_layer {
+			label = "_functionKey";
+			bindings = <
+
+   &trans  &trans    &trans
+   
+   &trans   &kp F1   &kp F2   &kp F3   &kp F4   &kp F5		&kp F6   &kp F7   &kp F8   &kp F9   &kp F10   &trans
+   &kp LGUI   &kp F11   &kp F12   &kp F13   &kp F14   &kp F15		&kp F16   &kp F17   &kp F18   &kp LBKT   &kp RBKT   &kp UNDER
+   &trans   &kp HOME   &kp END   &kp PG_UP   &kp PG_DN   &kp BSPC		&kp F19   &kp F20   &kp F21   &kp F22   &kp F23   &kp DQT
+   &kp LSHFT   &kp F1   &kp F2   &kp F3   &kp F4   &kp F5		&kp F6   &kp F7   &kp F8   &kp F9   &kp F10   &kp RSHFT
+   &kp DEL   &trans   &kp ENTER   &kp LALT   &trans   &kp SPACE		&trans   &kp PIPE   &kp PLUS   &trans   &kp TILDE   &kp BSPC
+
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
 
 
 
@@ -341,9 +374,9 @@ enum {
  * ※2：	通常の場所にAltキーが無ければ不便だと気づいた20200128
  */
 
-        mouse_winLayer {
-            label = "_MOUSEWinPlate";
-            bindings = <
+		mouse_winLayer {
+			label = "_MOUSEWinPlate";
+			bindings = <
 
    &trans  &trans    &trans
    
@@ -353,29 +386,13 @@ enum {
    &trans   &trans   &trans   &trans   &trans   &kp BACKSPACE		&msc SCRL_LEFT   &msc SCRL_DOWN   &msc SCRL_UP   &msc SCRL_RIGHT   &kp KP_EQUAL   &kp RSHIFT
    &trans   &trans   &kp ENTER   &kp LALT   &trans   &trans		&trans   &trans   &kp CAPSLOCK   &kp SCROLLLOCK   &kp INSERT   &kp PAUSE_BREAK
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
 
-        mouse_macLayer {
-            label = "_MOUSEmacPlate";
-            bindings = <
-
-   &trans  &trans    &trans
-   
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
-
-        mouse_linuxLayer {
-            label = "_MOUSELinuxPlate";
-            bindings = <
+		mouse_macLayer {
+			label = "_MOUSEmacPlate";
+			bindings = <
 
    &trans  &trans    &trans
    
@@ -385,13 +402,13 @@ enum {
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
 
-        mouse_phoneLayer {
-            label = "_MOUSEphonePlate";
-            bindings = <
+		mouse_linuxLayer {
+			label = "_MOUSELinuxPlate";
+			bindings = <
 
    &trans  &trans    &trans
    
@@ -401,9 +418,25 @@ enum {
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
 
-            >;
-            sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
-        };
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
+
+		mouse_phoneLayer {
+			label = "_MOUSEphonePlate";
+			bindings = <
+
+   &trans  &trans    &trans
+   
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
 
 
 
@@ -414,5 +447,5 @@ enum {
 
 
 
-    };
+	};
 };
