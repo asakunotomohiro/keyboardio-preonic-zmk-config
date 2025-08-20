@@ -89,12 +89,13 @@ enum {
    &mt LGUI TAB   &kp Q   &kp W   &kp E   &kp R   &kp T		&kp Y   &kp U   &kp I   &kp O   &kp P   &kp MINUS
    &mt LCTRL ENTER   &kp A   &kp S   &kp D   &kp F   &kp G		&kp H   &kp J   &kp K   &kp L   &kp SEMI   &kp SQT
    &kp LSHFT   &kp Z   &kp X   &kp C   &kp V   &kp B		&kp N   &kp M   &kp COMMA   &kp PERIOD   &kp SLASH   &kp RSHFT
-   &kp HYPER   &lt _MOUSEWinPlate BKSP   &kp INT3   &mt LALT DEL   &lt _functionKey ESC   &mt LCTRL SPACE		&lt_MovePlate   &kp SLASH   &kp EQUAL   &kp GRAVE   &kp ENTER
+   &kp HYPER   &lt _MOUSEWinPlate BKSP   &kp INT4   &mt LALT DEL   &lt _functionKey ESC   &mt LCTRL SPACE		&lt_MovePlate   &kp SLASH   &kp EQUAL   &kp GRAVE   &kp ENTER
 		// LANG1	←☆日本語入力。
 		// LANG5	←☆無反応(半角/全角のはずが機能せず)。
 		// INT1	←☆無反応(機能せず)。
 		// INT2	←☆無反応(機能せず)。
-		// INT3	←☆
+		// INT3	←☆無反応(機能せず)。
+		// INT4	←☆
 
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -474,7 +475,8 @@ enum {
 //例）       codes    = <INPUT_BTN_1>;	// devicetree error: 'codes' is marked as required in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/input_processors/zmk,input-processor-behaviors.yaml, but does not appear in <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'>
 //例）       bindings = <&kp LC(V)  >;	// devicetree error: 'bindings' is marked as required in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/input_processors/zmk,input-processor-behaviors.yaml, but does not appear in <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'>
 			#input-processor-cells = <0>;	// 0固定。
-			codes    = <INPUT_KEY_F23>;
+//			codes    = <INPUT_KEY_F23>;
+			codes    = <F23>;
 			bindings = <&kp F22>;	// これは何のため？
 		    #binding-cells = <0>;
 //err		layers = <_baseMOVEPlate _japMOVEPlate>;	// devicetree error: 'layers' appears in /behaviors/lt_MovePlate in /tmp/tmp.zu3OigabgZ/zephyr/zephyr.dts.pre, but is not declared in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/input_processors/zmk,input-processor-behaviors.yaml
