@@ -109,9 +109,14 @@ enum {
 
    &trans  &trans    &trans
    
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
-   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+//   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+//   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+//   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+//   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+//   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &kp A   &kp INT6   &kp INT7   &kp INT8   &kp INT9   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &kp PSCRN   &trans   &trans   &trans   &trans   &trans		&kp LANG1   &kp LANG2   &kp LANG3   &kp LANG4   &kp LANG5   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&kp LANG6   &kp LANG7   &kp LANG8   &kp LANG9   &trans   &trans
    &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
    &kp K_APP   &trans   &trans   &trans   &trans   &trans		&lt _baseMOVEPlate SPACE   &trans   &trans   &trans   &trans   &trans
 
@@ -535,22 +540,22 @@ enum {
 //			codes    = <INPUT_KEY_F23>;
 			codes    = <F23>;
 			bindings = <&kp F22>;	// これは何のため？
-		    #binding-cells = <0>;
+			#binding-cells = <0>;
 //err		layers = <_baseMOVEPlate _japMOVEPlate>;	// devicetree error: 'layers' appears in /behaviors/lt_MovePlate in /tmp/tmp.zu3OigabgZ/zephyr/zephyr.dts.pre, but is not declared in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/input_processors/zmk,input-processor-behaviors.yaml
 		};
+
+
+		// トリレイヤ。
+		conditional_layers {
+			compatible = "zmk,conditional-layers";
+			tri_layer {
+				if-layers = <_MOUSEWinPlate _functionKey>;
+				then-layer = <_selectADJUSTPlate>;
+			};
+		};
+
+
 	};
-
-
-/ {
-	// トリレイヤ。
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <_MOUSEWinPlate _functionKey>;
-            then-layer = <3>;
-        };
-    };
-};
 
 
 };
