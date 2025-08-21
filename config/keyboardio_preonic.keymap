@@ -36,16 +36,17 @@ enum {
 #define	_macQWERTY 2
 #define	_LinuxQWERTY 3
 #define	_phoneQWERTY 4
-#define	_baseMOVEPlate 5
-#define	_japMOVEPlate 6
-#define	_LOWER 7
-#define	_RAISE 8
-#define	_Bluetooth_etc 9
-#define	_functionKey 10
-#define	_MOUSEWinPlate 11
-#define	_MOUSEmacPlate 12
-#define	_MOUSELinuxPlate 13
-#define	_MOUSEphonePlate 14
+#define	_selectADJUSTPlate 5
+#define	_baseMOVEPlate 6
+#define	_japMOVEPlate 7
+#define	_LOWER 8
+#define	_RAISE 9
+#define	_Bluetooth_etc 10
+#define	_functionKey 11
+#define	_MOUSEWinPlate 12
+#define	_MOUSEmacPlate 13
+#define	_MOUSELinuxPlate 14
+#define	_MOUSEphonePlate 15
 
 // Using layer taps on thumbs, having quick tap as well helps w/ repeating space/backspace
 &lt { quick_tap_ms = <200>; };
@@ -89,13 +90,14 @@ enum {
    &mt LGUI TAB   &kp Q   &kp W   &kp E   &kp R   &kp T		&kp Y   &kp U   &kp I   &kp O   &kp P   &kp MINUS
    &mt LCTRL ENTER   &kp A   &kp S   &kp D   &kp F   &kp G		&kp H   &kp J   &kp K   &kp L   &kp SEMI   &kp SQT
    &kp LSHFT   &kp Z   &kp X   &kp C   &kp V   &kp B		&kp N   &kp M   &kp COMMA   &kp PERIOD   &kp SLASH   &kp RSHFT
-   &kp HYPER   &lt _MOUSEWinPlate BKSP   &kp INT4   &mt LALT DEL   &lt _functionKey ESC   &mt LCTRL SPACE		&lt_MovePlate   &kp SLASH   &kp EQUAL   &kp GRAVE   &kp ENTER
+   &kp HYPER   &lt _MOUSEWinPlate BKSP   &kp INT5   &mt LALT DEL   &lt _functionKey ESC   &mt LCTRL SPACE		&lt_MovePlate   &kp SLASH   &kp EQUAL   &kp GRAVE   &kp ENTER
 		// LANG1	←☆日本語入力。
 		// LANG5	←☆無反応(半角/全角のはずが機能せず)。
 		// INT1	←☆無反応(機能せず)。
 		// INT2	←☆無反応(機能せず)。
 		// INT3	←☆無反応(機能せず)。
-		// INT4	←☆
+		// INT4	←☆無反応(機能せず)。
+		// INT5	←☆
 
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -164,6 +166,59 @@ enum {
 			>;
 			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
 		};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* LayerChange and Media Layer
+ * ,------------------------------------------------------------------------------------------------------------------------.
+ * |         |         |         |         |         |         ||         |         |         |         |         |         |
+ * |---------+---------+---------+---------+---------+---------++---------+---------+---------+---------+---------+---------|
+ * |         |         |enWinBase|         |         |  10Key  ||         |         |  iOS    | 音楽mode|         |         |
+ * |---------+---------+---------+---------+---------+---------++---------+---------+---------+---------+---------+---------|
+ * | AudioON | Android | Debug   |         |         |         ||BackSpace|         |  色相増 |  Linux  |  色相減 |         |
+ * |---------+---------+---------+---------+---------+---------++---------+---------+---------+---------+---------+---------|
+ * | AudioOFF|         |         |         |         |BackSpace|| RollOver|  MacOS  |  彩度上 |         |  彩度下 |         |
+ * |---------+---------+---------+---------+---------+---------++---------+---------+---------+---------+---------+---------|
+ * |jpWinBase| 配置済み|         | 配置済み| 配置済み|         || 配置済み|         |  明値増 |         |  明値減 |  F12    |
+ * `------------------------------------------------------------------------------------------------------------------------'
+ */
+
+		plate_selectLayer {
+			label = "_selectADJUSTPlate";
+			bindings = <
+
+   &trans  &trans    &trans
+   
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &trans   &mo _winQWERTY   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+   &trans   &mo _phoneQWERTY   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &mo _LinuxQWERTY   &trans   &trans
+   &trans   &trans   &trans   &trans   &trans   &trans		&trans   &mo _macQWERTY   &trans   &trans   &trans   &trans
+   &mo _japWinQWERTY   &trans   &trans   &trans   &trans   &trans		&trans   &trans   &trans   &trans   &trans   &trans
+
+			>;
+			sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+		};
+
 
 
 
@@ -466,14 +521,16 @@ enum {
 		};
 
 		lt_MovePlate: lt_MovePlate {
-//		    compatible = "zmk,behavior-multi-mo";
-//		    compatible = "zmk,behavior-momentary-layer";	// devicetree error: value of property '#binding-cells' on /behaviors/lt_MovePlate in /tmp/tmp.vVB7GsE1jt/zephyr/zephyr.dts.pre (0) is different from the 'const' value specified in /tmp/zmk-config/zmk/app/dts/bindings/behaviors/zmk,behavior-momentary-layer.yaml (1)
-//		    compatible = "zmk,behavior-macro";	// devicetree error: 'bindings' is marked as required in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/behaviors/zmk,behavior-macro.yaml, but does not appear in <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'>
-//		    compatible = "zmk,behavior-hold-tap";	// devicetree error: 'bindings' is marked as required in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/behaviors/zmk,behavior-hold-tap.yaml, but does not appear in <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'>
-		    compatible = "zmk,input-processor-behaviors";	// devicetree error: binding controller <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'> for <Node /keymap/base_jpLayer in '/tmp/zmk-config/zephyr/misc/empty_file.c'> lacks binding
-//例）       #input-processor-cells = <0>;	// devicetree error: '#input-processor-cells' is marked as required in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/input_processors/zmk,input-processor-behaviors.yaml, but does not appear in <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'>
-//例）       codes    = <INPUT_BTN_1>;	// devicetree error: 'codes' is marked as required in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/input_processors/zmk,input-processor-behaviors.yaml, but does not appear in <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'>
-//例）       bindings = <&kp LC(V)  >;	// devicetree error: 'bindings' is marked as required in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/input_processors/zmk,input-processor-behaviors.yaml, but does not appear in <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'>
+			// バインディング	←☆求めていることができない(8/20)。
+			//	https://zmk.dev/docs/keymaps/input-processors/behaviors#compatible
+//			compatible = "zmk,behavior-multi-mo";
+//			compatible = "zmk,behavior-momentary-layer";	// devicetree error: value of property '#binding-cells' on /behaviors/lt_MovePlate in /tmp/tmp.vVB7GsE1jt/zephyr/zephyr.dts.pre (0) is different from the 'const' value specified in /tmp/zmk-config/zmk/app/dts/bindings/behaviors/zmk,behavior-momentary-layer.yaml (1)
+//			compatible = "zmk,behavior-macro";	// devicetree error: 'bindings' is marked as required in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/behaviors/zmk,behavior-macro.yaml, but does not appear in <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'>
+//			compatible = "zmk,behavior-hold-tap";	// devicetree error: 'bindings' is marked as required in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/behaviors/zmk,behavior-hold-tap.yaml, but does not appear in <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'>
+			compatible = "zmk,input-processor-behaviors";	// devicetree error: binding controller <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'> for <Node /keymap/base_jpLayer in '/tmp/zmk-config/zephyr/misc/empty_file.c'> lacks binding
+//例）		#input-processor-cells = <0>;	// devicetree error: '#input-processor-cells' is marked as required in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/input_processors/zmk,input-processor-behaviors.yaml, but does not appear in <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'>
+//例）		codes    = <INPUT_BTN_1>;	// devicetree error: 'codes' is marked as required in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/input_processors/zmk,input-processor-behaviors.yaml, but does not appear in <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'>
+//例）		bindings = <&kp LC(V)  >;	// devicetree error: 'bindings' is marked as required in 'properties:' in /tmp/zmk-config/zmk/app/dts/bindings/input_processors/zmk,input-processor-behaviors.yaml, but does not appear in <Node /behaviors/lt_MovePlate in '/tmp/zmk-config/zephyr/misc/empty_file.c'>
 			#input-processor-cells = <0>;	// 0固定。
 //			codes    = <INPUT_KEY_F23>;
 			codes    = <F23>;
@@ -484,6 +541,16 @@ enum {
 	};
 
 
+/ {
+	// トリレイヤ。
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <_MOUSEWinPlate _functionKey>;
+            then-layer = <3>;
+        };
+    };
+};
 
 
 };
